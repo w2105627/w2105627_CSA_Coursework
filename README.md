@@ -21,3 +21,14 @@ To fetch readings for a specific sensor, you can request
 
 The project can be run with NetBeans with Apache Tomcat or Intellij via SmartTomcat.
 
+Example cURL commands:
+1) fetch all rooms
+curl http://localhost:8080/smartcampus/api/v1/rooms/
+2) fetch a specific room
+curl http://localhost:8080/smartcampus/api/v1/rooms/room1
+3) fetch all sensors
+curl http://localhost:8080/smartcampus/api/v1/sensors
+4) fetch a specific sensor
+curl http://localhost:8080/smartcampus/api/v1/sensors/sensor1
+5) DELETE a room
+curl -X "DELETE" http://localhost:8080/smartcampus/api/v1/rooms/room1

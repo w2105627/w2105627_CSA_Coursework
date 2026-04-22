@@ -88,3 +88,8 @@ to defining every nested path (e.g., sensors/{id}/readings/{rid}) in one massive
 
 The Sub-Resource locator pattern benefits the architecture of your application by redirecting nested resource code to a dedicated class. SensorResource handles the managing of specific sensor instances, whereas a sensor reading is an entirely new resource, which is handled by its own class. This separation allows for smaller classes, which promote readability, scalability and debugging. It also allows your code to mimic the actual path of the resource, rather than having a single class which contains code for a multitude of paths.
 Usage of @QueryParam is generally considered a more optimal approach when compared against PathParam due to a few key reasons. One, it makes it clear that you are still requesting the same resource, and just applying a filter to it, rather than adding another layer to the URL path, which indicates that you are requesting an entirely new resource. On top of this, Query parameters can easily be scaled, and can be passed in any order, whereas path parameters do not have this benefit.
+
+
+Question: Why is HTTP 422 often considered more semantically accurate than a standard
+404 when the issue is a missing reference inside a valid JSON payload?
+

@@ -94,3 +94,5 @@ Question: Why is HTTP 422 often considered more semantically accurate than a sta
 404 when the issue is a missing reference inside a valid JSON payload?
 
 Returning a 404 response would indicate that the resource requested does not exist at all on the server, which would be an incorrect response in this case, due to the fact that the resource does exist, but the request body has a problem. Due to this, returning a 422 unprocessable entity makes it clear that there is no problem with the endpoint requested, but rather a semantic problem with the request payload. It cleraly indicates that the request is being rejected by the business logic of the code, rather than the server.
+
+k

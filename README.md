@@ -63,3 +63,17 @@ processing.
 Choosing to return only room IDs will have the benefit of reducing the response size and thus the bandwidth used for the response, which can free up a notable amount of resources if the resource being returned is particularly large. However, it has the downside of not giving the client the full picture of what it might want, which leads to the client needing to do more processing and making additional requests if the data is missing.
 Because of this, returning full objects has the clear convenience of covering all bases, and the client has access to all possible information it might want. However, in the case where the client doesn't need all the information, this can be considered a clear waste of resources.
 
+
+Question: Is the DELETE operation idempotent in your implementation? Provide a detailed
+justification by describing what happens if a client mistakenly sends the exact same DELETE
+request for a room multiple times.
+
+Yes, a DELETE operation is idempotent in my implementation. Upon a successful delete, the resource is removed, and any subsequent identical requests will return a 404 Not Found, and the final server state will remain the same after the first operation. Upon a successful deletion, 204 No Content is returned. Upon an attempt to delete a room with active sensors, a 409-resource conflict is returned with an error message indicating why it cannot be removed. If there is no room with the given id, then a 404 is returned.
+
+Question: We explicitly use the @Consumes (MediaType.APPLICATION_JSON) annotation on
+the POST method. Explain the technical consequences if a client attempts to send data in
+a different format, such as text/plain or application/xml. How does JAX-RS handle this
+mismatch?
+
+@Consumes tells JAX-RS to only accept a properly formatted JSON request body. If an attempt is made to send another content type, such as XML or plain text, JAX-RS will reject it and return a 415 Unsupported Media type. This happens prior to my business logic running, which protects my runtime storage from being corrupted with malformed data. If the content is a malformed JSON body, then it will also reject it before attempting to pass it to the application.
+

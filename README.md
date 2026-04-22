@@ -95,4 +95,16 @@ Question: Why is HTTP 422 often considered more semantically accurate than a sta
 
 Returning a 404 response would indicate that the resource requested does not exist at all on the server, which would be an incorrect response in this case, due to the fact that the resource does exist, but the request body has a problem. Due to this, returning a 422 unprocessable entity makes it clear that there is no problem with the endpoint requested, but rather a semantic problem with the request payload. It cleraly indicates that the request is being rejected by the business logic of the code, rather than the server.
 
-k
+
+Question: From a cybersecurity standpoint, explain the risks associated with exposing
+internal Java stack traces to external API consumers. What specific information could an
+attacker gather from such a trace?
+
+Exposing a stack trace is unacceptable for several reasons. It can give an outsider information on the inner workings of the software, which they can use maliciously.
+A stack trace can include information such as class and function names, information on the versions of any frameworks being used, which could then be exploited if they have known vulnerabilities, as well as information on the file paths and directory structure. It can also indicate the logical flow of the program and expose internal endpoints that were created only for development. All of this ultimately can give a threat actor a new attack vector against the program, as they can identify more weak points and form extremely well targeted attacks.
+
+
+Question: Why is it advantageous to use JAX-RS filters for cross-cutting concerns like
+logging, rather than manually inserting Logger.info() statements inside every single resource method?
+
+If you were to take the manual approach, it would lead to enormous amounts of code duplication, and inevitably lead to forgetting to implement it when creating new methods. JAX-RS filters bypasses this by ensuring it will always apply to a new part of the code, by centralising the logging logic into one class. It allows you to update logging logic in one place, as if it was manually placed in every class, you would need to iterate through each one to make even minor changes. It is also incorrect from a programming standpoint to mix cross-cutting concerns such as debugging info with the real business logic of the program.

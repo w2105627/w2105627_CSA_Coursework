@@ -77,3 +77,8 @@ mismatch?
 
 @Consumes tells JAX-RS to only accept a properly formatted JSON request body. If an attempt is made to send another content type, such as XML or plain text, JAX-RS will reject it and return a 415 Unsupported Media type. This happens prior to my business logic running, which protects my runtime storage from being corrupted with malformed data. If the content is a malformed JSON body, then it will also reject it before attempting to pass it to the application.
 
+Question: You implemented this filtering using @QueryParam. Contrast this with an alternative design where the type is part of the URL path (e.g., /api/vl/sensors/type/CO2). Why
+is the query parameter approach generally considered superior for filtering and searching
+collections?
+
+Usage of @QueryParam is generally considered a more optimal approach when compared against PathParam due to a few key reasons. One, it makes it clear that you are still requesting the same resource, and just applying a filter to it, rather than adding another layer to the URL path, which indicates that you are requesting an entirely new resource. On top of this, Query parameters can easily be scaled, and can be passed in any order, whereas path parameters do not have this benefit.

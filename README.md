@@ -45,3 +45,21 @@ In JAX-RS, by default a Resource class is instantiated on a per-request basis, r
 This is in line with the stateless architecture of REST, where request specific data handling is separated from a persistent application state. 
 Due to this, I explicitly do not store any data that I want to persist past the lifetime of the instance of that request resource, within the data members of a resource class, since these go out of scope at the end of each request, and any data is lost. Instead, any data that I want to modify the application state is appended to a data structure that is created once upon startup and then persists across the lifetime of the app, which is the singleton approach I took for data storage.
 Strategies for synchronizing in memory data and preventing race conditions would include using thread safe data structures, such as ConcurrentHashMap, and locking data once you access it, to prevent other threads from updating it while you are still modifying it, leading to that thread modifying stale data.
+
+
+- Question: Why is the provision of Hypermedia (links and navigation within responses)
+  considered a hallmark of advanced RESTful design (HATEOAS)? How does this approach
+  benefit client developers compared to static documentation?
+
+Hypermedia is considered a hallmark of RESTful design because it allows for dynamic interactions between the client and server. Embedding navigation paths within a response allows for the API to be self-documenting, and lets the client figure out how to navigate through the application, which is something that cannot be done with static documentation.
+Developers get the benefit of not needing to hardcode every link inside the application, which can speed up development time, as clients are now made to follow a path provided by a response, rather than hardcoding URLs within the application, which makes for harder iteration over development, as it requires more code to be changed each time you want to implement something new.
+
+
+Question: When returning a list of rooms, what are the implications of returning only
+IDs versus returning the full room objects? Consider network bandwidth and client side
+processing.
+
+
+Choosing to return only room IDs will have the benefit of reducing the response size and thus the bandwidth used for the response, which can free up a notable amount of resources if the resource being returned is particularly large. However, it has the downside of not giving the client the full picture of what it might want, which leads to the client needing to do more processing and making additional requests if the data is missing.
+Because of this, returning full objects has the clear convenience of covering all bases, and the client has access to all possible information it might want. However, in the case where the client doesn't need all the information, this can be considered a clear waste of resources.
+

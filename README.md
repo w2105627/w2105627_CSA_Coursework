@@ -19,7 +19,12 @@ To filter sensors by type, you can use query parameters. i.e.:
 To fetch readings for a specific sensor, you can request
 /api/v1/sensors/{sensorid}/readings
 
-The project can be run with NetBeans with Apache Tomcat or Intellij via SmartTomcat.
+To build and deploy the project:
+- Open the project in a IDE
+- Configure a Apache TOMCAT server
+- Deploy the project on TOMCAT through the NetBeans built in plugin, or the external SmartTomcat plugin for Intellij.
+- Launch the server
+Once launched, the api can be accessed through http://localhost:8080/smartcampus/api/v1.
 
 Example cURL commands:
 1) fetch all rooms

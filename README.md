@@ -1,7 +1,7 @@
 Student ID: w2105627
 
 This is my implementation for the 5COSC022W.2 Client-Server Architecture module at the University of Westminster. 
-It is a RESTful API for a Smart Campus Sensor system. There are three main resources involved, the Room, the Sensors, and the sensor readings.
+It implements a RESTful API for a Smart Campus Sensor system. There are three main resources involved, the Room, the Sensors, and the sensor readings.
 The rooms have sensors assigned to them, and each individual sensor has a history of sensor readings.
 
 ## Usage

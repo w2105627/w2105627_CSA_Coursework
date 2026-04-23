@@ -17,7 +17,7 @@
 
     <packaging>war</packaging>
 
-    <!-- Dependencies -->
+
     <dependencies>
 
         <dependency>
@@ -39,7 +39,7 @@
         </dependency>
     </dependencies>
 
-    <!-- Build Plugins -->
+
     <build>
         <plugins>
             <plugin>

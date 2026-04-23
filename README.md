@@ -41,8 +41,8 @@ singleton? Elaborate on how this architectural decision impacts the way you mana
 synchronize your in-memory data structures (maps/lists) to prevent data loss or race conditions.
 
 Answer:
-In JAX-RS, by default a Resource class is instantiated on a per-request basis, rather than it acting as a singleton.
-This is in line with the stateless architecture of REST, where request specific data handling is separated from a persistent application state. 
+In JAX-RS, by default a resource class is instantiated on a per request basis, rather than it acting as a singleton.
+This matches the expected stateless architecture of REST, where request-specific data handling is separated from a persistent application state. 
 Due to this, I explicitly do not store any data that I want to persist past the lifetime of the instance of that request resource, within the data members of a resource class, since these go out of scope at the end of each request, and any data is lost. Instead, any data that I want to modify the application state is appended to a data structure that is created once upon startup and then persists across the lifetime of the app, which is the singleton approach I took for data storage.
 Strategies for synchronizing in memory data and preventing race conditions would include using thread safe data structures, such as ConcurrentHashMap, and locking data once you access it, to prevent other threads from updating it while you are still modifying it, leading to that thread modifying stale data.
 

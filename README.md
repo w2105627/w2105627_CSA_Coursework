@@ -7,17 +7,17 @@ The rooms have sensors assigned to them, and each individual sensor has a histor
 The base endpoint is /api/v1.
 
 ### Rooms
-To fetch all rooms, the endpoint is /api/v1/rooms. This returns representations of all rooms in the system.
-To fetch a specific room, you can use /api/v1/rooms/{roomid}.
+To fetch all rooms, the endpoint is `/api/v1/rooms`. This returns representations of all rooms in the system.
+To fetch a specific room, you can use `/api/v1/rooms/{roomid}`.
 
 ### Sensors
-To fetch all sensors, the endpoint is /api/v1/sensors
-To fetch a specific sensor, the endpoint is /api/v1/sensors/{sensorid}
+To fetch all sensors, the endpoint is `/api/v1/sensors`
+To fetch a specific sensor, the endpoint is `/api/v1/sensors/{sensorid}`
 To filter sensors by type, you can use query parameters. i.e.:
-/api/v1/sensors/sensors?type=CO2
+`/api/v1/sensors/sensors?type=CO2`
 
 To fetch readings for a specific sensor, you can request
-/api/v1/sensors/{sensorid}/readings
+`/api/v1/sensors/{sensorid}/readings`
 
 To build and deploy the project:
 - Open the project in a IDE

@@ -29,15 +29,24 @@ Once launched, the api can be accessed through http://localhost:8080/smartcampus
 
 Example cURL commands:
 1) fetch all rooms
-curl http://localhost:8080/smartcampus/api/v1/rooms/
-2) fetch a specific room
-curl http://localhost:8080/smartcampus/api/v1/rooms/room1
-3) fetch all sensors
-curl http://localhost:8080/smartcampus/api/v1/sensors
-4) fetch a specific sensor
-curl http://localhost:8080/smartcampus/api/v1/sensors/sensor1
-5) DELETE a room
-curl -X "DELETE" http://localhost:8080/smartcampus/api/v1/rooms/room1
+
+`curl http://localhost:8080/smartcampus/api/v1/rooms/`
+
+3) fetch a specific room
+
+`curl http://localhost:8080/smartcampus/api/v1/rooms/room1`
+
+4) fetch all sensors
+
+`curl http://localhost:8080/smartcampus/api/v1/sensors`
+
+5) fetch a specific sensor
+
+`curl http://localhost:8080/smartcampus/api/v1/sensors/sensor1`
+
+6) DELETE a room
+
+`curl -X "DELETE" http://localhost:8080/smartcampus/api/v1/rooms/room1`
 
 Report:
 
